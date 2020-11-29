@@ -33,7 +33,7 @@ num == 12 would return 4 steps:
 function shortestStepsToNum(num) {
    let counter = 0; //set counter
     while(num > 1){
-     //if current number is even, divide it by two; if its even, subtract 1
+     //if current number is even, divide it by two; if its odd, subtract 1
       num % 2 == 0 ? num /= 2 : num--
       counter++
     }
