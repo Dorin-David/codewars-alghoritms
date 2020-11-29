@@ -67,6 +67,6 @@ for(let i = 0; i < previous.length + 1; i++){
 
 ***WHAT DID I LEARN***
 > It helped me to better visualize a 2D array, and appreciate it's compactness; we can image how the data from a server, or a user, could grow exponentially. 
-  An Array could be one or choices to store and easilly access that data. It's indeed a very useful Data Structure, 
+  An Array could be one of our choices to store and easily access that data. It's indeed a very powerful and useful Data Structure.  
 > Manage scenarios where an element could be missing
 */
