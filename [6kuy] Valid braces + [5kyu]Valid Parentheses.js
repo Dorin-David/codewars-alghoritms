@@ -62,3 +62,48 @@ Part 1: https://www.youtube.com/watch?v=L3ud3rXpIxA&ab_channel=WilliamFiset
 Part 2: https://www.youtube.com/watch?v=RAMqDLI6_1c&ab_channel=WilliamFiset
 
 */
+
+//The above kata was created as a variation of this one: https://www.codewars.com/kata/valid-parentheses
+//Since they are pretty much linked and the logic of the solution is very similar, I'll post that one too
+
+/*
+***DESCRIPTION***
+Write a function that takes a string of parentheses and determines if the order of the parentheses is valid. 
+The function should return true if the string is valid, and false if it's invalid.
+
+"()"              =>  true
+")(()))"          =>  false
+"("               =>  false
+"(())((()())())"  =>  true
+
+*/
+
+
+//***SOLUTION***
+
+function validParentheses(parens){
+  let a = 0, b = 0;
+  for(let i = 0; i < parens.length; i++){
+    parens[i] == '(' ? a++ : b++
+    if(b > a) return false
+  }
+  return a == b
+}
+
+//***EXPLANATION***
+/*
+As I said the solution is quite similar; having just two possible elements, we don't need a stack: a counter is enough.  
+
+function validParentheses(parens){
+  let a = 0, b = 0; //initialize counter
+  for(let i = 0; i < parens.length; i++){
+    //if current element is an opening parentheses, update its counter, otherwise update the closing parentheses' counter 
+    parens[i] == '(' ? a++ : b++
+    //if at any point, before we've traversed the whole input, closing parentheses are more than opening, the input is invalid
+    if(b > a) return false
+  }
+  //now make sure we have an equal amount of opening and closing parentheses (we may encounter a scenario where we end up having more opening parentheses)
+  return a == b
+}
+*/
+
