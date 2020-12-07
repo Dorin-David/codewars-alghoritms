@@ -78,7 +78,30 @@ function score(dice) {
   ***WHAT DID I LEARN***
 > To me this was a fun tricky kata; you had to check for a general pattern (a number repeating x3), but with quite a lot of exceptions (1 repating x3 is worth 1000 points, extra ones
 have to be counted etc). The order it's really important here; if you do not think about it carefully you might bump into unexpected behaviour...
-
-
+ ***ThOUGHTS***
+> I'm a bit worried about the readability of my solution. Also, I've used way too many iterations (6!) over the input/copy; that's fine for a small input like 
+  the one of this kata, but what if we'd apply the same logic to a very big input? The solution can be improved
   */
-  
+
+//***BONUS: a great and compact solution from another warrior**
+
+function score( dice ) {
+  var dc = [0,0,0,0,0,0]; //here our warrios stores the count of the elements; in order: 1 2 3 4 5 6
+  var tdr = [1000,200,300,400,500,600]; // store the values of the elements that repeat x3
+  var sdr = [100,0,0,0,50,0]; //and here the values of the element that repeat once (or more than 3 times)
+ //Traverse the input and update dc, our counter-array; note that he/she substracts - 1 from the current element; 
+ //that's because of the 0 based index;  the place for 1, for instance, is at index 0
+  dice.forEach(function(x){ dc[x-1]++; });
+ //after we've updated the counter, we traverse it with reduce
+  return dc.reduce(function(s,x,i){ 
+         //    V---is the element repeating 3 or more times? go into the triple-value array (tdr) and retrieve its value; otherwise, ignore it (0)
+    return s + (x >= 3? tdr[i] : 0) + sdr[i]*(x % 3);
+                                   //   ^--go into the single values array, retrieve value (100 for a 1, 50 for a 5) and multiply it by the remainder (if any) of its counter divided by 3
+                                   // why so? in a scenario like 11XXX 1 is repeating twice (x == 2); now, 2 % 3 == 2; in a scenario like 11111: 5 % 3 == 2
+  },0);
+}
+  /*
+  ***COMMENTS***
+  I like the compactness of this solution (it uses just two iterations); however, it's quite difficult to read and understand, even in a context like codewars where solutions
+  are usually very short, and often cryptic... 
+  */
